@@ -1,8 +1,8 @@
 public abstract class Entity {
-    private String name;
+    private final String name;
     private int coordinateX;
     private int coordinateY;
-    private String image;
+    private final String image;
 
     public Entity(String name, int coordinateX, int coordinateY, String image) {
         this.name = name;
