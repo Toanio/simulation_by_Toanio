@@ -1,5 +1,5 @@
 public class Tree extends Entity{
-    public Tree(int coordinateX, int coordinateY) {
-        super("Дерево", coordinateX, coordinateY, "\uD83C\uDF32");
+    public Tree(Coordinate coordinate) {
+        super("Дерево", "\uD83C\uDF32", coordinate);
     }
 }

@@ -1,8 +1,8 @@
 public class Grass extends Entity{
     private int resourceAmount = 100;
 
-    public Grass(int coordinateX, int coordinateY) {
-        super("Трава", coordinateX, coordinateY, "☘️");
+    public Grass(Coordinate coordinate) {
+        super("Трава", "☘️", coordinate);
     }
 
     public int takeResource(int count) {

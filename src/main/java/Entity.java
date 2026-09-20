@@ -1,29 +1,23 @@
 public abstract class Entity {
     private final String name;
-    private int coordinateX;
-    private int coordinateY;
     private final String image;
+    private Coordinate coordinate;
 
-    public Entity(String name, int coordinateX, int coordinateY, String image) {
+    public Entity(String name, String image, Coordinate coordinate) {
         this.name = name;
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
         this.image = image;
+        this.coordinate = coordinate;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCoordinateX() {
-        return coordinateX;
-    }
-
-    public int getCoordinateY() {
-        return coordinateY;
-    }
-
     public String getImage() {
         return image;
+    }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 }
