@@ -20,4 +20,8 @@ public abstract class Entity {
     public Coordinate getCoordinate() {
         return coordinate;
     }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
+    }
 }
