@@ -9,7 +9,5 @@ public abstract class Creature extends Entity{
         this.speed = speed;
     }
 
-    public void makeMove() {
-
-    }
+    public abstract void makeMove(GameMap map);
 }
