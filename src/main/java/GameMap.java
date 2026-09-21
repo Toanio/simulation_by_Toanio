@@ -11,6 +11,14 @@ public class GameMap {
         this.height = height;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void addEntity(Entity entity) {
         grid.put(entity.getCoordinate(), entity);
     }
