@@ -5,6 +5,10 @@ public class Grass extends Entity{
         super("Трава", "☘️", coordinate);
     }
 
+    public Grass(int x, int y) {
+        this(new Coordinate(x, y));
+    }
+
     public int takeResource(int count) {
        if (count <= resourceAmount) {
            resourceAmount -= count;
