@@ -32,6 +32,29 @@ public class GameMap {
     }
 
     public boolean isCoordinateEmpty(Coordinate coordinate) {
-        return !grid.containsKey(coordinate);
+        if (isCoordinateValid(coordinate)) {
+            return !grid.containsKey(coordinate);
+        } else {
+            return false;
+        }
+
     }
+
+    public boolean isCoordinateValid(Coordinate coordinate) {
+        return 0 <= coordinate.x() && coordinate.x() < width
+                && 0 <= coordinate.y() && coordinate.y() < height;
+    }
+
+    public boolean moveEntity(Entity entity, Coordinate coordinate) {
+        if (isCoordinateEmpty(coordinate)) {
+            deleteEntity(entity.getCoordinate());
+            entity.setCoordinate(coordinate);
+            addEntity(entity);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
