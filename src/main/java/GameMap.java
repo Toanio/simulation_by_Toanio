@@ -56,5 +56,9 @@ public class GameMap {
         }
     }
 
+    public String getEntityType(Coordinate coordinate) {
+        return grid.get(coordinate).getName();
+    }
+
 
 }

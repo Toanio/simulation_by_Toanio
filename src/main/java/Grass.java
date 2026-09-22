@@ -9,6 +9,10 @@ public class Grass extends Entity{
         this(new Coordinate(x, y));
     }
 
+    public int getResourceAmount() {
+        return resourceAmount;
+    }
+
     public int takeResource(int count) {
        if (count <= resourceAmount) {
            resourceAmount -= count;
