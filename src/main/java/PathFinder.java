@@ -40,7 +40,8 @@ public class PathFinder {
                 neighbors.add(downNeighbor);
 
                 for(Coordinate neighbor: neighbors) {
-                    if (map.isCoordinateValid(neighbor) && !visited.contains(neighbor)) {
+                    if (map.isCoordinateValid(neighbor) && !visited.contains(neighbor) && (map.isCoordinateEmpty(neighbor)
+                            || targetType.isInstance(map.getEntityByCoordinate(neighbor)))) {
                         parentMap.put(neighbor, current);
                         queue.add(neighbor);
                         visited.add(neighbor);
