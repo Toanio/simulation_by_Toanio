@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Herbivore extends Creature{
     public Herbivore(String name, String image, Coordinate coordinate, int hp, int speed) {
-        super(name, image, coordinate, hp, speed);
+        super(name, image, coordinate, hp, speed, Grass.class);
     }
 
     public void findResource(GameMap map) {

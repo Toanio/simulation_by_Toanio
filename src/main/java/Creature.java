@@ -5,12 +5,14 @@ import java.util.Random;
 public abstract class Creature extends Entity{
     private int hp;
     private int speed;
+    private Class<?> target;
 
     public Creature(String name, String image, Coordinate coordinate, int hp, int
-                    speed) {
+                    speed,Class<?> target ) {
         super(name, image, coordinate);
         this.hp = hp;
         this.speed = speed;
+        this.target = target;
     }
 
     public int getHp() {
@@ -26,13 +28,14 @@ public abstract class Creature extends Entity{
     }
 
     public void makeMove(GameMap map) {
-        List<Coordinate> possibleMoves = getNeighborCoordinates(map);
+        PathFinder pathFinder = new PathFinder();
+        List<Coordinate> possibleMoves = pathFinder.findPath(map, this.getCoordinate(), target);
 
         if (possibleMoves.isEmpty()) {
             return;
         }
 
-        Coordinate nextMove = getRandomMovesCoordinate(possibleMoves);
+        Coordinate nextMove = possibleMoves.get(1);
         map.moveEntity(this, nextMove);
     }
 

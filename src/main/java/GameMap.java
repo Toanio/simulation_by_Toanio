@@ -1,10 +1,10 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class GameMap {
     private final int width;
     private final int height;
     private final Map<Coordinate, Entity> grid = new HashMap<>();
+    private final Random random = new Random();
 
     public GameMap(int width, int height) {
         this.width = width;
@@ -60,5 +60,29 @@ public class GameMap {
         return grid.get(coordinate).getName();
     }
 
+    private Coordinate getRandomCoordinate() {
+        int x = random.nextInt(width);
+        int y = random.nextInt(height);
 
+        return new Coordinate(x, y);
+    }
+
+    public Coordinate getRandomEmptyCoordinate() {
+        while (true) {
+            Coordinate coordinate = getRandomCoordinate();
+            if (isCoordinateEmpty(coordinate)) {
+                return coordinate;
+            }
+        }
+    }
+
+    public List<Creature> getCreature() {
+        List<Creature> creaturesList = new ArrayList<>();
+        for(Entity entity: grid.values()) {
+            if(entity instanceof Creature creature) {
+                creaturesList.add(creature);
+            }
+        }
+        return creaturesList;
+    }
 }

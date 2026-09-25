@@ -2,8 +2,9 @@ import java.util.List;
 
 public class Predator extends Creature{
     int attackPower;
+
     public Predator(String name, String image, Coordinate coordinate, int hp, int speed, int attackPower) {
-        super(name, image, coordinate, hp, speed);
+        super(name, image, coordinate, hp, speed, Herbivore.class);
         this.attackPower = attackPower;
     }
 
