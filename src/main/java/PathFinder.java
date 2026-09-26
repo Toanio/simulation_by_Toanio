@@ -49,7 +49,7 @@ public class PathFinder {
                 }
             }
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }
