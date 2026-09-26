@@ -27,6 +27,8 @@ public abstract class Creature extends Entity{
         return speed;
     }
 
+    protected abstract void interact(GameMap map, Coordinate coordinate);
+
     public void makeMove(GameMap map) {
         PathFinder pathFinder = new PathFinder();
         List<Coordinate> possibleMoves = pathFinder.findPath(map, this.getCoordinate(), target);
@@ -35,8 +37,12 @@ public abstract class Creature extends Entity{
             return;
         }
 
-        Coordinate nextMove = possibleMoves.get(1);
-        map.moveEntity(this, nextMove);
+        if (possibleMoves.size() == 2) {
+            this.interact(map, possibleMoves.get(1));
+        } else {
+            Coordinate nextMove = possibleMoves.get(1);
+            map.moveEntity(this, nextMove);
+        }
     }
 
     public List<Coordinate> getNeighborCoordinates(GameMap map) {
