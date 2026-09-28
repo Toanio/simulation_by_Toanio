@@ -56,10 +56,6 @@ public class GameMap {
         }
     }
 
-    public String getEntityType(Coordinate coordinate) {
-        return grid.get(coordinate).getName();
-    }
-
     private Coordinate getRandomCoordinate() {
         int x = random.nextInt(width);
         int y = random.nextInt(height);

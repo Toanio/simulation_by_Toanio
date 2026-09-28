@@ -6,8 +6,4 @@ public class Wolf extends Predator{
     public Wolf(Coordinate coordinate) {
         super("Волк", "\uD83D\uDC3A", coordinate, DEFAULT_HP, DEFAULT_SPEED, DEFAULT_ATTACK_POWER);
     }
-
-    public Wolf(int x, int y) {
-        this(new Coordinate(x, y));
-    }
 }

@@ -1,26 +1,24 @@
 import java.util.List;
 
 public class Herbivore extends Creature{
-    public Herbivore(String name, String image, Coordinate coordinate, int hp, int speed) {
-        super(name, image, coordinate, hp, speed, Grass.class);
-    }
+    int eatPower;
 
-    public void findResource(GameMap map) {
-        List<Coordinate> possibleCoordinate = this.getNeighborCoordinates(map);
-
-        for (Coordinate coordinate : possibleCoordinate) {
-            if (map.getEntityByCoordinate(coordinate) instanceof Grass grass) {
-                grass.takeResource(10);
-                IO.println("Успешная съел травы " + grass.getResourceAmount());
-                IO.println("Координаты зайца " + this.getCoordinate());
-                IO.println("Координаты трава " + grass.getCoordinate());
-            }
-        }
-
+    public Herbivore(String name, String image, Coordinate coordinate, int hp, int speed, int eatPower) {
+        super(name, image, coordinate, hp, Grass.class);
+        this.eatPower = eatPower;
     }
 
     public void takeDamage(int attackPower) {
         this.setHp(this.getHp() - attackPower);
     }
 
+    @Override
+    protected void interact(GameMap map, Coordinate coordinate) {
+        if (map.getEntityByCoordinate(coordinate) instanceof Grass grass) {
+            grass.takeResource(eatPower);
+            if (grass.isEmpty()) {
+                map.deleteEntity(grass.getCoordinate());
+            }
+        }
+    }
 }

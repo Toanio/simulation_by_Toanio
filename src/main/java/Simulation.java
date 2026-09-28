@@ -1,9 +1,16 @@
+import config.ConfigLoader;
+import config.SimulationConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation {
-    GameMap map = new GameMap(10, 10);
+    SimulationConfig config = ConfigLoader.loadConfig();
+
+    GameMap map = new GameMap(config.map().width(), config.map().height());
     MapRenderer renderer = new MapRenderer();
+
+    int counter = 0;
 
     List<Action> initActions;
     List<Action> turnActions;
@@ -13,11 +20,11 @@ public class Simulation {
         this.initActions = new ArrayList<>();
         this.turnActions = new ArrayList<>();
 
-        initActions.add(new SpawnGrassAction(5));
-        initActions.add(new SpawnRabbitAction(10));
-        initActions.add(new SpawnWolfAction(5));
-        initActions.add(new SpawnTreeAction(4));
-        initActions.add(new SpawnRockAction(5));
+        initActions.add(new SpawnGrassAction(config.grass().count()));
+        initActions.add(new SpawnRabbitAction(config.rabbit().count()));
+        initActions.add(new SpawnWolfAction(config.wolf().count()));
+        initActions.add(new SpawnTreeAction(config.tree().count()));
+        initActions.add(new SpawnRockAction(config.rock().count()));
 
         turnActions.add(new MakeMoveAction());
     }
@@ -30,11 +37,13 @@ public class Simulation {
     }
 
     public void nextTurn() {
+        counter += 1;
+        IO.println("Ход №: " + counter );
+
         renderer.render(map);
         for(Action action: turnActions) {
             action.execute(map);
         }
-        IO.println("Следующий ход");
     }
 
     public void startSimulation() {

@@ -1,0 +1,33 @@
+{
+  "map": {
+    "width" : 10,
+    "height": 10
+  },
+
+  "wolf": {
+    "hp": 100,
+    "speed": 1,
+    "attackPower": 10,
+    "count": 10
+  },
+
+  "rabbit": {
+    "hp": 100,
+    "speed": 1,
+    "eatPower": 10,
+    "count": 10
+  },
+
+  "grass": {
+    "resourceAmount": 100,
+    "count": 10
+  },
+
+  "tree": {
+    "count": 10
+  },
+
+  "rock": {
+    "count": 10
+  }
+}

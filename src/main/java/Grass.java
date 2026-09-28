@@ -5,23 +5,8 @@ public class Grass extends Entity{
         super("Трава", "☘️", coordinate);
     }
 
-    public Grass(int x, int y) {
-        this(new Coordinate(x, y));
-    }
-
-    public int getResourceAmount() {
-        return resourceAmount;
-    }
-
-    public int takeResource(int count) {
-       if (count <= resourceAmount) {
-           resourceAmount -= count;
-           return count;
-       } else {
-           int buffer = resourceAmount;
-           resourceAmount = 0;
-           return buffer;
-       }
+    public void takeResource(int count) {
+        resourceAmount -= count;
     }
 
     public boolean isEmpty() {
