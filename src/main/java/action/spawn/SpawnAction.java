@@ -1,3 +1,10 @@
+package action.spawn;
+
+import action.Action;
+import model.entity.Entity;
+import model.map.Coordinate;
+import model.map.GameMap;
+
 public abstract class SpawnAction implements Action {
     private final int countEntity;
 

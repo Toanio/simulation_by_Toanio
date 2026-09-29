@@ -1,4 +1,9 @@
-public class Predator extends Creature{
+package model.entity;
+
+import model.map.Coordinate;
+import model.map.GameMap;
+
+public class Predator extends Creature {
     int attackPower;
 
     public Predator(String name, String image, Coordinate coordinate, int hp, int speed, int attackPower) {

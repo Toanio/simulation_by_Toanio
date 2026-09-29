@@ -1,3 +1,9 @@
+package action.spawn;
+
+import model.entity.Entity;
+import model.entity.Tree;
+import model.map.Coordinate;
+
 public class SpawnTreeAction extends SpawnAction{
 
     public SpawnTreeAction(int countEntity) {

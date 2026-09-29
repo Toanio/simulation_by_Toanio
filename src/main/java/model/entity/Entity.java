@@ -1,3 +1,7 @@
+package model.entity;
+
+import model.map.Coordinate;
+
 public abstract class Entity {
     private final String name;
     private final String image;

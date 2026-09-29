@@ -1,3 +1,8 @@
+package view;
+
+import model.map.Coordinate;
+import model.map.GameMap;
+
 public class MapRenderer {
     public MapRenderer() {
     }

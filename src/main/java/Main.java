@@ -1,4 +1,4 @@
-import javax.swing.*;
+import engine.Simulation;
 
 void main() {
     Simulation simulation = new Simulation();

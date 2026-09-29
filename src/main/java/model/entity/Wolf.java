@@ -1,4 +1,8 @@
-public class Wolf extends Predator{
+package model.entity;
+
+import model.map.Coordinate;
+
+public class Wolf extends Predator {
     static int DEFAULT_HP = 200;
     static int DEFAULT_SPEED = 1;
     static int DEFAULT_ATTACK_POWER = 10;

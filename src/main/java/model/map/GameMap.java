@@ -1,3 +1,8 @@
+package model.map;
+
+import model.entity.Creature;
+import model.entity.Entity;
+
 import java.util.*;
 
 public class GameMap {

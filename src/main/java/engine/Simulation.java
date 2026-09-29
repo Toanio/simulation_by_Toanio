@@ -1,5 +1,11 @@
+package engine;
+
+import action.*;
+import action.spawn.*;
 import config.ConfigLoader;
 import config.SimulationConfig;
+import model.map.GameMap;
+import view.MapRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

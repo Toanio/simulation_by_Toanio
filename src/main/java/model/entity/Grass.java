@@ -1,3 +1,7 @@
+package model.entity;
+
+import model.map.Coordinate;
+
 public class Grass extends Entity{
     private int resourceAmount = 100;
 

@@ -1,3 +1,9 @@
+package engine;
+
+import model.entity.Entity;
+import model.map.Coordinate;
+import model.map.GameMap;
+
 import java.util.*;
 
 public class PathFinder {

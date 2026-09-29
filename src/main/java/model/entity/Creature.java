@@ -1,12 +1,16 @@
-import java.util.ArrayList;
+package model.entity;
+
+import engine.PathFinder;
+import model.map.Coordinate;
+import model.map.GameMap;
+
 import java.util.List;
-import java.util.Random;
 
 public abstract class Creature extends Entity{
     private int hp;
     private Class<?> target;
 
-    public Creature(String name, String image, Coordinate coordinate, int hp,Class<?> target ) {
+    public Creature(String name, String image, Coordinate coordinate, int hp, Class<?> target ) {
         super(name, image, coordinate);
         this.hp = hp;
         this.target = target;

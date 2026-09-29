@@ -1,4 +1,7 @@
-import java.util.List;
+package model.entity;
+
+import model.map.Coordinate;
+import model.map.GameMap;
 
 public class Herbivore extends Creature{
     int eatPower;
