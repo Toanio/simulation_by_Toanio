@@ -28,6 +28,10 @@ public class GameMap {
         grid.put(entity.getCoordinate(), entity);
     }
 
+    public Collection<Entity> getAllEntities() {
+        return grid.values();
+    }
+
     public Entity getEntityByCoordinate(Coordinate coordinate) {
         return  grid.get(coordinate);
     }
@@ -50,40 +54,5 @@ public class GameMap {
                 && 0 <= coordinate.y() && coordinate.y() < height;
     }
 
-    public boolean moveEntity(Entity entity, Coordinate coordinate) {
-        if (isCoordinateEmpty(coordinate)) {
-            deleteEntity(entity.getCoordinate());
-            entity.setCoordinate(coordinate);
-            addEntity(entity);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    private Coordinate getRandomCoordinate() {
-        int x = random.nextInt(width);
-        int y = random.nextInt(height);
-
-        return new Coordinate(x, y);
-    }
-
-    public Coordinate getRandomEmptyCoordinate() {
-        while (true) {
-            Coordinate coordinate = getRandomCoordinate();
-            if (isCoordinateEmpty(coordinate)) {
-                return coordinate;
-            }
-        }
-    }
-
-    public List<Creature> getCreature() {
-        List<Creature> creaturesList = new ArrayList<>();
-        for(Entity entity: grid.values()) {
-            if(entity instanceof Creature creature) {
-                creaturesList.add(creature);
-            }
-        }
-        return creaturesList;
-    }
 }

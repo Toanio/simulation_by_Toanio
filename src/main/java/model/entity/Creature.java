@@ -1,5 +1,6 @@
 package model.entity;
 
+import engine.MovementService;
 import engine.PathFinder;
 import model.map.Coordinate;
 import model.map.GameMap;
@@ -10,7 +11,7 @@ public abstract class Creature extends Entity{
     private int hp;
     private Class<?> target;
 
-    public Creature(String name, String image, Coordinate coordinate, int hp, Class<?> target ) {
+    public Creature(String name, String image, Coordinate coordinate, int hp, Class<?> target) {
         super(name, image, coordinate);
         this.hp = hp;
         this.target = target;
@@ -38,7 +39,9 @@ public abstract class Creature extends Entity{
             this.interact(map, possibleMoves.get(1));
         } else {
             Coordinate nextMove = possibleMoves.get(1);
-            map.moveEntity(this, nextMove);
+
+            MovementService movementService = new MovementService();
+            movementService.moveEntity(this, nextMove, map);
         }
     }
 
