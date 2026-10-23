@@ -24,8 +24,8 @@ public class GameMap {
         return height;
     }
 
-    public void addEntity(Entity entity, Coordinate coordinate) {
-        grid.put(coordinate, entity);
+    public void addEntity(Entity entity) {
+        grid.put(entity.getCoordinate(), entity);
     }
 
     public Collection<Entity> getAllEntities() {
