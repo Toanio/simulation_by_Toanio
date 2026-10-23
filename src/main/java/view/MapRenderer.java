@@ -1,5 +1,6 @@
 package view;
 
+import model.entity.Entity;
 import model.map.Coordinate;
 import model.map.GameMap;
 
@@ -12,7 +13,8 @@ public class MapRenderer {
             for (int j = 0; j < map.getWidth(); j++) {
                 Coordinate coordinate = new Coordinate(j, i);
                 if (!map.isCoordinateEmpty(coordinate)) {
-                    IO.print(map.getEntityByCoordinate(coordinate).getImage());
+                    map.getEntityByCoordinate(coordinate)
+                            .ifPresent(entity -> IO.print(entity.getImage()));
                 } else {
                     IO.print(". ");
                 }

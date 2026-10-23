@@ -21,7 +21,7 @@ public class PathFinder {
 
         while (!queue.isEmpty()) {
             Coordinate current = queue.poll();
-            Entity entity = map.getEntityByCoordinate(current);
+            Optional<Entity> entity = map.getEntityByCoordinate(current);
             if (targetType.isInstance(entity)) {
                 List<Coordinate> path = new ArrayList<>();
                 Coordinate buffer = current;

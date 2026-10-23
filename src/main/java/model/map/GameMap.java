@@ -32,8 +32,8 @@ public class GameMap {
         return grid.values();
     }
 
-    public Entity getEntityByCoordinate(Coordinate coordinate) {
-        return  grid.get(coordinate);
+    public Optional<Entity> getEntityByCoordinate(Coordinate coordinate) {
+        return  Optional.ofNullable(grid.get(coordinate));
     }
 
     public void deleteEntity(Coordinate coordinate) {

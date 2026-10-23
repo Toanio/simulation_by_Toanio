@@ -17,11 +17,14 @@ public class Herbivore extends Creature{
 
     @Override
     protected void interact(GameMap map, Coordinate coordinate) {
-        if (map.getEntityByCoordinate(coordinate) instanceof Grass grass) {
-            grass.takeResource(eatPower);
-            if (grass.isEmpty()) {
-                map.deleteEntity(grass.getCoordinate());
-            }
-        }
+        map.getEntityByCoordinate(coordinate)
+                .filter(entity -> entity instanceof Grass)
+                .map(entity -> (Grass) entity)
+                .ifPresent(grass -> {
+                    grass.takeResource(eatPower);
+                    if (grass.isEmpty()) {
+                        map.deleteEntity(coordinate);
+                    }
+                });
     }
 }

@@ -13,11 +13,15 @@ public class Predator extends Creature {
 
     @Override
     protected void interact(GameMap map, Coordinate coordinate) {
-        if (map.getEntityByCoordinate(coordinate) instanceof Herbivore herbivore) {
-            herbivore.takeDamage(attackPower);
-            if (!herbivore.isAlive()) {
-                map.deleteEntity(herbivore.getCoordinate());
-            }
-        }
+        map.getEntityByCoordinate(coordinate)
+                .filter(entity -> entity instanceof Herbivore)
+                .map(entity -> (Herbivore) entity)
+                .ifPresent(herbivore -> {
+                    herbivore.takeDamage(attackPower);
+                    if (!herbivore.isAlive()) {
+                        map.deleteEntity(herbivore.getCoordinate());
+                    }
+                });
+
     }
 }
