@@ -42,12 +42,7 @@ public class GameMap {
     }
 
     public boolean isCoordinateEmpty(Coordinate coordinate) {
-        if (isCoordinateValid(coordinate)) {
-            return !grid.containsKey(coordinate);
-        } else {
-            return false;
-        }
-
+        return isCoordinateValid(coordinate) && !grid.containsKey(coordinate);
     }
 
     public boolean isCoordinateValid(Coordinate coordinate) {
