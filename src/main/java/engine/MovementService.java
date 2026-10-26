@@ -12,8 +12,7 @@ public class MovementService {
             entity.setCoordinate(coordinate);
             map.addEntity(entity, coordinate);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
