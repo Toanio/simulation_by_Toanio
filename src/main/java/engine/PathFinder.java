@@ -21,8 +21,12 @@ public class PathFinder {
 
         while (!queue.isEmpty()) {
             Coordinate current = queue.poll();
-            Optional<Entity> entity = map.getEntityByCoordinate(current);
-            if (targetType.isInstance(entity)) {
+
+            boolean isCurrentTarget = map.getEntityByCoordinate(current)
+                    .filter(targetType::isInstance)
+                    .isPresent();
+
+            if (isCurrentTarget) {
                 List<Coordinate> path = new ArrayList<>();
                 Coordinate buffer = current;
                 while (buffer != null) {
@@ -46,8 +50,11 @@ public class PathFinder {
                 neighbors.add(downNeighbor);
 
                 for(Coordinate neighbor: neighbors) {
+                    boolean isTarget = map.getEntityByCoordinate(neighbor)
+                            .filter(targetType:: isInstance)
+                            .isPresent();
                     if (map.isCoordinateValid(neighbor) && !visited.contains(neighbor) && (map.isCoordinateEmpty(neighbor)
-                            || targetType.isInstance(map.getEntityByCoordinate(neighbor)))) {
+                            || isTarget)) {
                         parentMap.put(neighbor, current);
                         queue.add(neighbor);
                         visited.add(neighbor);
