@@ -8,9 +8,6 @@ import java.util.*;
 
 public class PathFinder {
 
-    public PathFinder() {
-    }
-
     public List<Coordinate> findPath(GameMap map, Coordinate start, Class<?> targetType) {
         Queue<Coordinate> queue = new ArrayDeque<>();
         Set<Coordinate> visited = new HashSet<>();
@@ -35,34 +32,39 @@ public class PathFinder {
                 }
 
                 return path.reversed();
-            } else {
+            }
 
-                List<Coordinate> neighbors = new ArrayList<>();
+            List<Coordinate> neighbors = new ArrayList<>();
 
-                Coordinate leftNeighbor = new Coordinate(current.x() - 1, current.y());
-                Coordinate rightNeighbor = new Coordinate(current.x() + 1, current.y());
-                Coordinate upNeighbor = new Coordinate(current.x(), current.y() - 1);
-                Coordinate downNeighbor = new Coordinate(current.x(), current.y() + 1);
+            Coordinate leftNeighbor = new Coordinate(current.x() - 1, current.y());
+            Coordinate rightNeighbor = new Coordinate(current.x() + 1, current.y());
+            Coordinate upNeighbor = new Coordinate(current.x(), current.y() - 1);
+            Coordinate downNeighbor = new Coordinate(current.x(), current.y() + 1);
 
-                neighbors.add(leftNeighbor);
-                neighbors.add(rightNeighbor);
-                neighbors.add(upNeighbor);
-                neighbors.add(downNeighbor);
+            neighbors.add(leftNeighbor);
+            neighbors.add(rightNeighbor);
+            neighbors.add(upNeighbor);
+            neighbors.add(downNeighbor);
 
-                for(Coordinate neighbor: neighbors) {
-                    boolean isTarget = map.getEntityByCoordinate(neighbor)
-                            .filter(targetType:: isInstance)
-                            .isPresent();
-                    if (map.isCoordinateValid(neighbor) && !visited.contains(neighbor) && (map.isCoordinateEmpty(neighbor)
-                            || isTarget)) {
-                        parentMap.put(neighbor, current);
-                        queue.add(neighbor);
-                        visited.add(neighbor);
-                    }
+            for (Coordinate neighbor : neighbors) {
+                if (isValidStep(map, neighbor, visited, targetType)) {
+                    parentMap.put(neighbor, current);
+                    queue.add(neighbor);
+                    visited.add(neighbor);
                 }
             }
         }
         return Collections.emptyList();
+    }
+
+    private boolean isValidStep(GameMap map, Coordinate neighbor, Set<Coordinate> visited, Class<?> targetType) {
+        boolean isTarget = map.getEntityByCoordinate(neighbor)
+                .filter(targetType::isInstance)
+                .isPresent();
+        return map.isCoordinateValid(neighbor)
+                && !visited.contains(neighbor)
+                && (map.isCoordinateEmpty(neighbor)
+                || isTarget);
     }
 
 }
