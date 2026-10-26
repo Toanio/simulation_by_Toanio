@@ -7,6 +7,12 @@ import model.map.GameMap;
 import java.util.*;
 
 public class PathFinder {
+    private static final List<Coordinate> SHIFT_COORDINATES = List.of(
+            new Coordinate(-1,0),
+            new Coordinate(+1, 0),
+            new Coordinate(0, -1),
+            new Coordinate(0, +1)
+    );
 
     public List<Coordinate> findPath(GameMap map, Coordinate start, Class<?> targetType) {
         Queue<Coordinate> queue = new ArrayDeque<>();
@@ -34,17 +40,7 @@ public class PathFinder {
                 return path.reversed();
             }
 
-            List<Coordinate> neighbors = new ArrayList<>();
-
-            Coordinate leftNeighbor = new Coordinate(current.x() - 1, current.y());
-            Coordinate rightNeighbor = new Coordinate(current.x() + 1, current.y());
-            Coordinate upNeighbor = new Coordinate(current.x(), current.y() - 1);
-            Coordinate downNeighbor = new Coordinate(current.x(), current.y() + 1);
-
-            neighbors.add(leftNeighbor);
-            neighbors.add(rightNeighbor);
-            neighbors.add(upNeighbor);
-            neighbors.add(downNeighbor);
+            List<Coordinate> neighbors = getNeighbors(current);
 
             for (Coordinate neighbor : neighbors) {
                 if (isValidStep(map, neighbor, visited, targetType)) {
@@ -65,6 +61,15 @@ public class PathFinder {
                 && !visited.contains(neighbor)
                 && (map.isCoordinateEmpty(neighbor)
                 || isTarget);
+    }
+
+    private List<Coordinate> getNeighbors(Coordinate coordinate) {
+        List<Coordinate> neighbors = new ArrayList<>();
+        for (Coordinate shift: SHIFT_COORDINATES) {
+            Coordinate neighbor = new Coordinate(coordinate.x() + shift.x(), coordinate.y() + shift.y());
+            neighbors.add(neighbor);
+        }
+        return neighbors;
     }
 
 }
