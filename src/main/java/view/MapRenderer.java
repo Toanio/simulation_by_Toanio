@@ -16,7 +16,7 @@ public class MapRenderer {
                     map.getEntityByCoordinate(coordinate)
                             .ifPresent(entity -> IO.print(entity.getImage()));
                 } else {
-                    IO.print(". ");
+                    IO.print("\uD83D\uDFEB");
                 }
             }
             IO.println();
