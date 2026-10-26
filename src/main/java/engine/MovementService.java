@@ -10,7 +10,7 @@ public class MovementService {
         if (map.isCoordinateEmpty(coordinate)) {
             map.deleteEntity(entity.getCoordinate());
             entity.setCoordinate(coordinate);
-            map.addEntity(entity);
+            map.addEntity(entity, coordinate);
             return true;
         } else {
             return false;

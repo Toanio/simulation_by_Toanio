@@ -22,7 +22,9 @@ public abstract class SpawnAction implements Action {
     @Override
     public void execute(GameMap map) {
         for (int i = 0; i < countEntity; i++) {
-            map.addEntity(createEntity(getRandomEmptyCoordinate(map)));
+            Coordinate coordinate = getRandomEmptyCoordinate(map);
+            Entity entity = createEntity(coordinate);
+            map.addEntity(entity, coordinate);
         }
     }
 
