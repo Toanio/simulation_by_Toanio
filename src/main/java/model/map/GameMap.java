@@ -25,6 +25,7 @@ public class GameMap {
     }
 
     public void addEntity(Entity entity, Coordinate coordinate) {
+        validate(coordinate);
         grid.put(coordinate, entity);
     }
 
@@ -52,6 +53,12 @@ public class GameMap {
     public boolean isCoordinateValid(Coordinate coordinate) {
         return 0 <= coordinate.x() && coordinate.x() < width
                 && 0 <= coordinate.y() && coordinate.y() < height;
+    }
+
+    public void validate(Coordinate coordinate) {
+        if (!isCoordinateValid(coordinate)) {
+            throw new IllegalArgumentException("The coordinate is outside the map boundaries");
+        }
     }
 
 
