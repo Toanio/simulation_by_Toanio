@@ -6,8 +6,8 @@ import model.map.GameMap;
 public class Predator extends Creature {
     int attackPower;
 
-    public Predator(String name, String image, Coordinate coordinate, int hp, int speed, int attackPower) {
-        super(name, image, coordinate, hp, Herbivore.class);
+    public Predator(String name, Coordinate coordinate, int hp, int speed, int attackPower) {
+        super(name, coordinate, hp, Herbivore.class);
         this.attackPower = attackPower;
     }
 

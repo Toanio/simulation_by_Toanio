@@ -12,8 +12,8 @@ public abstract class Creature extends Entity{
     private Class<?> target;
     private Coordinate coordinate;
 
-    public Creature(String name, String image, Coordinate coordinate, int hp, Class<?> target) {
-        super(name, image);
+    public Creature(String name, Coordinate coordinate, int hp, Class<?> target) {
+        super(name);
         this.coordinate = coordinate;
         this.hp = hp;
         this.target = target;

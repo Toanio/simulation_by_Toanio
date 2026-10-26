@@ -8,6 +8,6 @@ public class Rabbit extends Herbivore {
     static int DEFAULT_EAT_POWER = 10;
 
     public Rabbit(Coordinate coordinate) {
-        super("Заяц", "\uD83D\uDC07", coordinate, DEFAULT_HP,DEFAULT_SPEED, DEFAULT_EAT_POWER);
+        super("Заяц", coordinate, DEFAULT_HP,DEFAULT_SPEED, DEFAULT_EAT_POWER);
     }
 }
