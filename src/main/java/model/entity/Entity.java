@@ -1,16 +1,12 @@
 package model.entity;
 
-import model.map.Coordinate;
-
 public abstract class Entity {
     private final String name;
     private final String image;
-    private Coordinate coordinate;
 
-    public Entity(String name, String image, Coordinate coordinate) {
+    public Entity(String name, String image) {
         this.name = name;
         this.image = image;
-        this.coordinate = coordinate;
     }
 
     public String getName() {
@@ -21,11 +17,4 @@ public abstract class Entity {
         return image;
     }
 
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
-    }
 }

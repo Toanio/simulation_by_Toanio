@@ -10,9 +10,11 @@ import java.util.List;
 public abstract class Creature extends Entity{
     private int hp;
     private Class<?> target;
+    private Coordinate coordinate;
 
     public Creature(String name, String image, Coordinate coordinate, int hp, Class<?> target) {
-        super(name, image, coordinate);
+        super(name, image);
+        this.coordinate = coordinate;
         this.hp = hp;
         this.target = target;
     }
@@ -29,7 +31,7 @@ public abstract class Creature extends Entity{
 
     public void makeMove(GameMap map) {
         PathFinder pathFinder = new PathFinder();
-        List<Coordinate> possibleMoves = pathFinder.findPath(map, this.getCoordinate(), target);
+        List<Coordinate> possibleMoves = pathFinder.findPath(map, getCoordinate(), target);
 
         if (possibleMoves.isEmpty()) {
             return;
@@ -43,6 +45,14 @@ public abstract class Creature extends Entity{
             MovementService movementService = new MovementService();
             movementService.moveEntity(this, nextMove, map);
         }
+    }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     public boolean isAlive() {

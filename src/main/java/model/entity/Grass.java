@@ -6,7 +6,7 @@ public class Grass extends Entity{
     private int resourceAmount = 100;
 
     public Grass(Coordinate coordinate) {
-        super("Трава", "☘️", coordinate);
+        super("Трава", "☘️");
     }
 
     public void takeResource(int count) {
