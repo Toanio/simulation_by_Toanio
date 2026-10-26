@@ -4,6 +4,7 @@ import action.*;
 import action.spawn.*;
 import config.ConfigLoader;
 import config.SimulationConfig;
+import model.entity.*;
 import model.map.GameMap;
 import view.MapRenderer;
 
@@ -26,11 +27,11 @@ public class Simulation {
         this.initActions = new ArrayList<>();
         this.turnActions = new ArrayList<>();
 
-        initActions.add(new SpawnGrassAction(config.grass().count()));
-        initActions.add(new SpawnRabbitAction(config.rabbit().count()));
-        initActions.add(new SpawnWolfAction(config.wolf().count()));
-        initActions.add(new SpawnTreeAction(config.tree().count()));
-        initActions.add(new SpawnRockAction(config.rock().count()));
+        initActions.add(new SpawnAction(Grass::new, config.grass().count()));
+        initActions.add(new SpawnAction(Rabbit::new, config.rabbit().count()));
+        initActions.add(new SpawnAction(Wolf::new, config.wolf().count()));
+        initActions.add(new SpawnAction(Tree::new, config.tree().count()));
+        initActions.add(new SpawnAction(Rock::new, config.rock().count()));
 
         turnActions.add(new MakeMoveAction());
     }

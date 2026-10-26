@@ -8,23 +8,26 @@ import model.map.GameMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
 
-public abstract class SpawnAction implements Action {
+public class SpawnAction implements Action {
     private final int countEntity;
     private final Random random = new Random();
+    private final Function<Coordinate, Entity> entityCreator;
 
-    public SpawnAction(int countEntity) {
+    public SpawnAction(Function<Coordinate, Entity> entityCreator, int countEntity ) {
+        this.entityCreator = entityCreator;
         this.countEntity = countEntity;
     }
-
-    abstract Entity createEntity(Coordinate coordinate);
 
     @Override
     public void execute(GameMap map) {
         for (int i = 0; i < countEntity; i++) {
             Coordinate coordinate = getRandomEmptyCoordinate(map);
-            Entity entity = createEntity(coordinate);
-            map.addEntity(entity, coordinate);
+            if (coordinate != null) {
+                Entity entity = entityCreator.apply(coordinate);
+                map.addEntity(entity, coordinate);
+            }
         }
     }
 
