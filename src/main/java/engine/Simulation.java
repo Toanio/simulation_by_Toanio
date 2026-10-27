@@ -10,6 +10,7 @@ import view.MapRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Simulation {
     SimulationConfig config = ConfigLoader.loadConfig();
@@ -22,6 +23,7 @@ public class Simulation {
     List<Action> initActions;
     List<Action> turnActions;
     private boolean isRunning = true;
+    private volatile boolean isPaused = false;
 
     public Simulation() {
         this.initActions = new ArrayList<>();
@@ -38,17 +40,17 @@ public class Simulation {
 
     public void init() {
 
-        for(Action action: initActions) {
+        for (Action action : initActions) {
             action.execute(map);
         }
     }
 
     public void nextTurn() {
         counter += 1;
-        IO.println("Ход №: " + counter );
+        IO.println("Ход №: " + counter);
 
         renderer.render(map);
-        for(Action action: turnActions) {
+        for (Action action : turnActions) {
             action.execute(map);
         }
     }
@@ -56,17 +58,35 @@ public class Simulation {
     public void startSimulation() {
         init();
         while (isRunning) {
-           nextTurn();
-
-           try {
-               Thread.sleep(500);
-           } catch (InterruptedException e) {
-              pauseSimulation();
-           }
+            while (isPaused) {
+                pause(100);
+            }
+            nextTurn();
+            pause(500);
         }
     }
 
     public void pauseSimulation() {
-        isRunning = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while (isRunning) {
+            String userAction = scanner.nextLine();
+            if (userAction.equals("p")) {
+                IO.println("Игра поставлена на паузу");
+                isPaused = true;
+            } else if (userAction.equals("c")) {
+                IO.println("Игра возобновлена");
+                isPaused = false;
+            }
+        }
     }
+
+    private void pause(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
 }
