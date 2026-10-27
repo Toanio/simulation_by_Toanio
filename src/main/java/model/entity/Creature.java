@@ -31,7 +31,7 @@ public abstract class Creature extends Entity{
 
     public void makeMove(GameMap map) {
         PathFinder pathFinder = new PathFinder();
-        List<Coordinate> possibleMoves = pathFinder.findPath(map, getCoordinate(), target);
+        List<Coordinate> possibleMoves = pathFinder.find(map, getCoordinate(), target);
 
         if (possibleMoves.isEmpty()) {
             return;

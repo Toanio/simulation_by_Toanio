@@ -1,6 +1,5 @@
 package engine;
 
-import model.entity.Entity;
 import model.map.Coordinate;
 import model.map.GameMap;
 
@@ -14,7 +13,7 @@ public class PathFinder {
             new Coordinate(0, +1)
     );
 
-    public List<Coordinate> findPath(GameMap map, Coordinate start, Class<?> targetType) {
+    public List<Coordinate> find(GameMap map, Coordinate start, Class<?> targetType) {
         Queue<Coordinate> queue = new ArrayDeque<>();
         Set<Coordinate> visited = new HashSet<>();
         Map<Coordinate, Coordinate> parentMap = new HashMap<>();
