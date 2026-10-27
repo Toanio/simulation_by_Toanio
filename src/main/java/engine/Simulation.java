@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Simulation {
-    SimulationConfig config = ConfigLoader.loadConfig();
+    private GameMap map;
 
-    GameMap map = new GameMap(config.map().width(), config.map().height());
     MapRenderer renderer = new MapRenderer();
 
     int counter = 0;
@@ -25,7 +24,9 @@ public class Simulation {
     private boolean isRunning = true;
     private volatile boolean isPaused = false;
 
-    public Simulation() {
+    public Simulation(GameMap map, SimulationConfig config) {
+        this.map = map;
+
         this.initActions = new ArrayList<>();
         this.turnActions = new ArrayList<>();
 
