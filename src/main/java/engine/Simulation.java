@@ -58,13 +58,21 @@ public class Simulation {
 
     public void startSimulation() {
         init();
-        while (isRunning) {
+        int turnCount = 0;
+        int maxTurns = 30;
+
+        while (isRunning && turnCount < maxTurns) {
             while (isPaused) {
                 pause(100);
             }
             nextTurn();
+            turnCount ++;
+
             pause(500);
         }
+
+        isRunning = false;
+        IO.println("Симуляция завершена после " + turnCount + " ходов.");
     }
 
     public void pauseSimulation() {
